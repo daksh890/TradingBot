@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binance Bot</title>
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+</head>
+<body>
+    <h1>{{title}}</h1>
+    <div id="chart" padding="40px"></div>
+    
+    <div id="my_balances">
+        <table>
+            <tr>
+                <th>Asset</th>
+                <th>Free</th>
+                <th>Locked</th>
+            </tr>
+            {% for balance in my_balances %}
+               <tr>
+                    <td>
+                        {{balance['asset']}}
+                    </td>
+                    <td>
+                        {{balance['free']}}
+                    </td>
+                    <td>
+                        {{balance['locked']}}
+                    </td>
+                </tr>
+            {% endfor %} 
+        </table>   
+    </div>
+
+    <h3>Settings</h3>
+    <div id="settings">
+        <input type="checkbox" /> RSI 
+        <input type="text" id="rsi_length" name="rsi_length" placeholder="14" />
+        Overbought
+        <input type="text" id="rsi_overbought" name="rsi_overbought" placeholder="70" />
+        Oversold
+        <input type="text" id="rsi_oversold" name="rsi_oversold" placeholder="30" />
+
+    </div>
+
+    <script src="{{url_for('static', filename='chart.js')}}"></script>
+</body>
+</html>
